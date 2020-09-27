@@ -1,6 +1,6 @@
 # Spotify Top Artists
 
-**Built on the base code from: <a href="https://github.com/nitisha-b/spotify-flask-tutorial>spotify-flask-tutorial</a> from <a href="https://hobbyhacks.techtogether.io">HobbyHacks</a>**
+**Built on the base code from: <a href="https://github.com/nitisha-b/spotify-flask-tutorial">spotify-flask-tutorial</a> from <a href="https://hobbyhacks.techtogether.io">HobbyHacks</a>**
 
 Once a user is authorized, this program will showcase the user's top 5 artists and 3 other artists related to those artists. 
 
