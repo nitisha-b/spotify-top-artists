@@ -19,7 +19,6 @@ def login():
     if token_info and not sp_oauth.is_token_expired(token_info):
         access_token = token_info['access_token']
         session['access_token'] = access_token
-        # return redirect(url_for('spotify.top_tracks'))
         return redirect(url_for('spotify.top_artists'))
     else:
         login_url = sp_oauth.get_authorize_url()
@@ -32,7 +31,6 @@ def set_token():
     token_info = sp_oauth.get_access_token(code)
     access_token = token_info['access_token']
     session['access_token'] = access_token
-    # return redirect(url_for('spotify.top_tracks'))
     return redirect(url_for('spotify.top_artists'))
 
 # Get all of your top artists and your currently playing song
@@ -40,8 +38,6 @@ def set_token():
 def top_artists():
     access_token = session['access_token']
     sp_api = spotipy.Spotify(access_token)
-    # top_artists_result = sp_api.current_user_top_tracks()
-
     top_artists_result = sp_api.current_user_top_artists()
         
     all_top_artists = []
@@ -51,11 +47,31 @@ def top_artists():
         top_artist['id'] = t['id']
         top_artist['top_tracks_list'] = sp_api.artist_top_tracks(t['id'])
         top_artist['artist_image'] = t['images'][0]['url']
+        top_artist['related_artists_list'] = sp_api.artist_related_artists(t['id'])
         all_top_artists.append(top_artist)
 
     for artist in all_top_artists:
+        # Sort top tracks by popularity to get the most popular one
+        # tracks_list = artist['top_tracks_list']['tracks']
+        # print(tracks_list.sort(key= lambda x:x['popularity'])
+        
         artist['top_track'] = artist['top_tracks_list']['tracks'][0]['name']
         artist['top_track_id'] = artist['top_tracks_list']['tracks'][0]['id']
+        
+        # Get top related artist name, id, and image
+        artist['related_artist'] = artist['related_artists_list']['artists'][0]['name']
+        artist['related_artist_id'] = artist['related_artists_list']['artists'][0]['id']
+        artist['related_artist_top_tracks'] = sp_api.artist_top_tracks(artist['related_artist_id'])
+
+    # Process related artist's information
+    for art in all_top_artists:
+        art['related_artist_image'] = art['related_artists_list']['artists'][0]['images'][0]['url']
+        print(art['related_artist'])
+        print("\n")
+
+        # Get related artist's top track
+        art['related_artist_top_track'] = art['related_artist_top_tracks']['tracks'][0]['name']
+        art['related_artist_top_track_id'] = art['related_artist_top_tracks']['tracks'][0]['id']
 
     current_playing = {}
     result = sp_api.current_user_playing_track()
