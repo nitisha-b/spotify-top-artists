@@ -5,60 +5,67 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-6 mt-2 ml-5 mb-2" style="border-right: 1px solid rgb(112, 112, 112);">
-                
-                <div class="position-static col-7" 
-                style="background-color: rgba(54, 54, 54, 0.623); padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px;">
-                    
-                    <div class="row">
-                        <img width=175px height=175px src="{{current_playing.image}}">
-                        <div class="col text-center" style="margin: 5% 5% 2% 5%;">
-                            <h4 class="text-white" style="font-family: Verdana, Geneva;">Currently Playing</h4>
-                            <h4 class="text-white" style="font-family: Cochin; padding-top: 10px;">
-                                <b>{{current_playing.song}}</b><br>
-                                {{current_playing.artist}}
-                            </h4>
-                        </div>
+        <!-- Currently Playing row -->
+        
+        <div class="row justify-content-center">
+            <div class="ml-5 mr-5 mb-2" 
+            style="background-color: rgba(54, 54, 54, 0.623); width: 60%; padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px;">
+        
+                <div class="row justify-content-center">
+                    <img width=200px height=200px src="{{current_playing.image}}">
+                    <div class="text-center mt-5 ml-5" >
+                        <h4 class="text-white" style="font-family: Verdana, Geneva;">Currently Playing</h4>
+                        <h4 class="text-white" style="font-family: Cochin; padding-top: 10px;">
+                            <b>{{current_playing.song}}</b><br>
+                            {{current_playing.artist}}
+                        </h4>
                     </div>
-                
-                </div> 
+                </div>
+           
+            
+            </div> 
+       
+        </div>
+        
 
-                <div class = "mt-4">
-                    <h2 class="text-white" style="font-family: Helvetica; font-weight: bold;">YOUR TOP ARTISTS</h2>
-                    <div class="row" >
-                        {% for track in top_tracks[0:5] %}
-                        <div class="col-6 mt-5">
-                            <img width=200px height= 200px src="{{track.artist_image}}">
-                        </div>
-                        <div class="col-6 mt-5">
-                            <h4 class="text-white font-weight-bold mt-4">
-                                {{track.artist_name}}
-                            </h4>
-                            <h5 class="text-white">
-                                Top Track: 
-                            </h5>
-                            <p class="text-white">
-                                {{track.top_track}}
-                            </p>
-                            <form action="{{ url_for('spotify.add_to_queue', track_id=track['top_track_id']) }}" method="post">
-                                <input class="btn btn-success" type="submit" value="Add to Queue">
-                            </form>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>        
-            </div>
-
-
-            <div class="col-4 mt-2 mr-4 ml-2">
-                <h2 class="text-white" style="font-family: Helvetica; font-weight: bold;">RELATED ARTISTS</h2>
+        <!-- Artists and related artists row -->
+        <div class="row container-fluid">
+            <!-- Top artists column -->
+            <div class = "col-6 mt-5 ml-5 mb-2" style="border-right: 1px solid rgb(112, 112, 112);">
+                <h2 class="text-white" style="font-family: Helvetica; font-weight: bold;">YOUR TOP ARTISTS</h2>
                 <div class="row" >
                     {% for track in top_tracks[0:5] %}
                     <div class="col-6 mt-5">
-                        <img width=200px height= 200px src="{{track.related_artist_image}}">
+                        <img width=200px height= 200px src="{{track.artist_image}}">
                     </div>
                     <div class="col-6 mt-5">
+                        <h4 class="text-white font-weight-bold mt-4">
+                            {{track.artist_name}}
+                        </h4>
+                        <h5 class="text-white">
+                            Top Track: 
+                        </h5>
+                        <p class="text-white">
+                            {{track.top_track}}
+                        </p>
+                        <form action="{{ url_for('spotify.add_to_queue', track_id=track['top_track_id']) }}" method="post">
+                            <input class="btn btn-success" type="submit" value="Add to Queue">
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>        
+    
+
+            <!-- Related artists Column -->
+            <div class="col-4 mt-5 ml-5">
+                <h2 class="text-white" style="font-family: Helvetica; font-weight: bold;">RELATED ARTISTS</h2>
+                <div class="row" >
+                    {% for track in top_tracks[0:5] %}
+                    <div class="col-7 mt-5">
+                        <img width=200px height= 200px src="{{track.related_artist_image}}">
+                    </div>
+                    <div class="col-5 mt-5">
                         <h4 class="text-white font-weight-bold mt-4">
                             {{track.related_artist}}
                         </h4>
@@ -76,5 +83,6 @@
                 </div>
             </div>
         </div>
+        
     </div>
 {% endblock %}

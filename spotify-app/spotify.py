@@ -66,8 +66,6 @@ def top_artists():
     # Process related artist's information
     for art in all_top_artists:
         art['related_artist_image'] = art['related_artists_list']['artists'][0]['images'][0]['url']
-        print(art['related_artist'])
-        print("\n")
 
         # Get related artist's top track
         art['related_artist_top_track'] = art['related_artist_top_tracks']['tracks'][0]['name']
