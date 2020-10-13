@@ -4,9 +4,8 @@
 
 Once a user is authorized, this program will showcase the user's top 5 artists and 3 other artists related to those artists. 
 
-## Walkthrough and Screenshot
-<img src="spotify_screenshot.png" width=400 height=300><br>
-<img src="http://g.recordit.co/WfTo79DUDH.gif" width=500 height=400>
+## Walkthrough
+<img src="http://g.recordit.co/WfTo79DUDH.gif" width=500 height=350>
 
 ### Prerequisites:
 
