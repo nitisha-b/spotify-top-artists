@@ -26,10 +26,10 @@ export SPOTIPY_CLIENT_SECRET='YOUR SECRET'
 export SPOTIPY_REDIRECT_URI='http://127.0.0.1:5000/oauth/callback'
 ```
 
-3. How to run this app locally:
+### How to run this app locally:
 
-i. Navigate to your terminal
-ii. `git clone https://github.com/nitisha-b/spotify-flask-tutorial.git`
-iii. `export FLASK_APP=spotify-app`
-iv. `export FLASK_ENV=development`
-v. `flask run`
+1. Navigate to your terminal
+2. `git clone https://github.com/nitisha-b/spotify-flask-tutorial.git`
+3. `export FLASK_APP=spotify-app`
+4. `export FLASK_ENV=development`
+5. `flask run`
