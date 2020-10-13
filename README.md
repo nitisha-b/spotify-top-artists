@@ -6,7 +6,7 @@ Once a user is authorized, this program will showcase the user's top 5 artists a
 
 ## Walkthrough and Screenshot
 <img src="spotify_screenshot.png" width=400 height=300><br>
-<img src="http://g.recordit.co/WfTo79DUDH.gif" width = 400>
+<img src="http://g.recordit.co/WfTo79DUDH.gif" width=500 height=400>
 
 ### Prerequisites:
 
