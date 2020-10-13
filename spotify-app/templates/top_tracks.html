@@ -29,16 +29,19 @@
                     <div class="row" >
                         {% for track in top_tracks[0:5] %}
                         <div class="col-6 mt-5">
-                            <img width=200px height= 200px src="{{track.album_image}}">
+                            <img width=200px height= 200px src="{{track.artist_image}}">
                         </div>
                         <div class="col-6 mt-5">
+                            <h4 class="text-white font-weight-bold mt-4">
+                                {{track.artist_name}}
+                            </h4>
                             <h5 class="text-white">
-                                {{track.track_name}}
+                                Top Track: 
                             </h5>
                             <p class="text-white">
-                                {{track.album_name}} - {{track.artist_name}}
+                                {{track.top_track}}
                             </p>
-                            <form action="{{ url_for('spotify.add_to_queue', track_id=track['track_id']) }}" method="post">
+                            <form action="{{ url_for('spotify.add_to_queue', track_id=track['top_track_id']) }}" method="post">
                                 <input class="btn btn-success" type="submit" value="Add to Queue">
                             </form>
                         </div>

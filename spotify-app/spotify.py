@@ -35,49 +35,27 @@ def set_token():
     # return redirect(url_for('spotify.top_tracks'))
     return redirect(url_for('spotify.top_artists'))
 
-# Get all of your top tracks and your currently playing song
-# @bp.route('/top_tracks', methods=['GET'])
-# def top_tracks():
-#     access_token = session['access_token']
-#     sp_api = spotipy.Spotify(access_token)
-#     top_tracks_result = sp_api.current_user_top_tracks()
-    
-#     all_top_tracks = []
-#     for t in top_tracks_result['items']:
-#         top_track = {}
-#         top_track['artist_name'] = t['artists'][0]['name']
-#         top_track['track_name'] = t['name']
-#         top_track['album_name'] = t['album']['name']
-#         top_track['album_image'] = t['album']['images'][0]['url']
-#         top_track['track_id'] = t['id']
-#         all_top_tracks.append(top_track)
-
-#     current_playing = {}
-#     result = sp_api.current_user_playing_track()
-#     if result:
-#         current_song_result = result['item']
-#         current_playing['song'] = current_song_result['name']
-#         current_playing['image'] = current_song_result['album']['images'][0]['url']
-#         current_playing['artist'] = current_song_result['artists'][0]['name']
-#     return render_template('top_tracks.html', top_tracks=all_top_tracks, 
-#     current_playing=current_playing)
-
 # Get all of your top artists and your currently playing song
 @bp.route('/top_tracks', methods=['GET'])
 def top_artists():
     access_token = session['access_token']
     sp_api = spotipy.Spotify(access_token)
-    top_artists_result = sp_api.current_user_top_tracks()
+    # top_artists_result = sp_api.current_user_top_tracks()
 
+    top_artists_result = sp_api.current_user_top_artists()
+        
     all_top_artists = []
     for t in top_artists_result['items']:
         top_artist = {}
-        top_artist['artist_name'] = t['artists'][0]['name']
-        top_artist['track_name'] = t['name']
-        top_artist['album_name'] = t['album']['name']
-        top_artist['artist_image'] = t['album']['images'][0]['url']
-        top_artist['track_id'] = t['id']
+        top_artist['artist_name'] = t['name']
+        top_artist['id'] = t['id']
+        top_artist['top_tracks_list'] = sp_api.artist_top_tracks(t['id'])
+        top_artist['artist_image'] = t['images'][0]['url']
         all_top_artists.append(top_artist)
+
+    for artist in all_top_artists:
+        artist['top_track'] = artist['top_tracks_list']['tracks'][0]['name']
+        artist['top_track_id'] = artist['top_tracks_list']['tracks'][0]['id']
 
     current_playing = {}
     result = sp_api.current_user_playing_track()
