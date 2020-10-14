@@ -33,4 +33,4 @@ export SPOTIPY_REDIRECT_URI='http://127.0.0.1:5000/oauth/callback'
 3. `export FLASK_APP=spotify-app`
 4. `export FLASK_ENV=development`
 5. `flask run`
-6. Open `'http://127.0.0.1:5000/` on your browser to view the webpage
+6. Open `http://127.0.0.1:5000/` on your browser to view the webpage
