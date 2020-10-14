@@ -9,7 +9,7 @@ If the user has their Spotify running, all of the tracks shown in the webpage ca
 If the user is listening to a song on Spotify it will be displayed at the top of the screen as "Currently Playing". 
 
 ## Walkthrough
-<img src="http://g.recordit.co/WfTo79DUDH.gif" width=650 height=500>
+<img src="http://g.recordit.co/WfTo79DUDH.gif" width=750 height=500>
 
 ### Prerequisites:
 
